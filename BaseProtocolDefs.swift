@@ -17,18 +17,18 @@
 import JobsSwiftBaseDefines
 #endif
 // MARK: - 查找当前对象所在的控制器
-protocol ViewControllerFindable {}
-protocol _UISafeUnwrappedBan {}     // 标记“UI 禁用默认兜底”
+public protocol ViewControllerFindable {}
+public protocol _UISafeUnwrappedBan {}     // 标记“UI 禁用默认兜底”
 // MARK: - 安全解包 Optional
-protocol SafeUnwrappedInitializable { init() }
+public protocol SafeUnwrappedInitializable { init() }
 // MARK: - 强类型输入协议（可选实现）
-protocol JobsDataReceivable {
+public protocol JobsDataReceivable {
     associatedtype InputData
     func receive(_ data: InputData)
 }
 // MARK: - 路由目的地等价（避免重名-前缀化）
 /// 默认“同类型 = 同目的地”。需要区分同类不同参数时，在目标 VC 里 override `jobs_isSameDestination(as:)`
-protocol JobsRouteComparable {
+public protocol JobsRouteComparable {
     func jobs_isSameDestination(as other: UIViewController) -> Bool
 }
 // MARK: - 少量便捷 then（可选）
