@@ -5,13 +5,13 @@ Pod::Spec.new do |s|
   s.description  = <<-DESC
                       全局常量/协议定义/结构体/枚举
                    DESC
-  s.homepage     = 'https://github.com/295060456/JobsSwiftBaseDefines'
+  s.homepage     = 'https://github.com/JobsKits/JobsSwiftBaseDefines'
   s.license      = { :type => 'MIT', :file => 'LICENSE' }
   s.author       = { 'Jobs' => 'lg295060456@gmail.com' }
 
   s.platform     = :ios, '15.0'
   s.swift_version = '5.0'
-  s.source       = { :git => 'https://github.com/295060456/JobsSwiftBaseDefines.git',
+  s.source       = { :git => 'https://github.com/JobsKits/JobsSwiftBaseDefines.git',
                      :tag => s.version.to_s }
   s.source_files = '**/*.swift'
   s.exclude_files = [
