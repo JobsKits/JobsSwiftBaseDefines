@@ -12,6 +12,10 @@
 #if os(iOS) || os(tvOS)
     import UIKit
 #endif
+
+#if canImport(JobsSwiftBaseDefines)
+import JobsSwiftBaseDefines
+#endif
 // MARK: - 查找当前对象所在的控制器
 protocol ViewControllerFindable {}
 protocol _UISafeUnwrappedBan {}     // 标记“UI 禁用默认兜底”

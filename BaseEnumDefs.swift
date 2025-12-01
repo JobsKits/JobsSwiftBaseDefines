@@ -820,21 +820,6 @@ public enum JobsCorConst {
     // MARK: -通用背景色
     static let public_bg_7: UIColor      = UIColor(named: "public-BG-7")!
     static let public_bg_8: UIColor      = UIColor(named: "public-BG-8")!
-    // MARK: 登陆、注册边框固定色
-    static let lineColor:UIColor = UIColor(hexString: "#ffffff",alpha: 0.1)!
-    static let img_unload: UIColor      =  UIColor(named: "img_unload") ?? UIColor(hexString: "D9E8FF")!
-    // MARK: vip背景色渐变
-    static let gradient_color_start: UIColor      = UIColor(hexString: "#353a3e")!
-    static let gradient_color_end: UIColor      = UIColor(hexString: "#2c2d2e")!
-
-    static let gradient_start: UIColor      = (UIColor(hexString: "#B0674A")?.withAlphaComponent(0.2))!
-    static let gradient_end: UIColor      = (UIColor(hexString: "#5639B4")?.withAlphaComponent(0.1))!
-
-    static let gradient_activity_start: UIColor      = (UIColor(hexString: "#ff284b")?.withAlphaComponent(0.7))!
-    static let gradient_activity_end: UIColor      = (UIColor(hexString: "#ff284b")?.withAlphaComponent(0.4))!
-    // MARK: 我的页面 vip渐变
-    static let gradient_vip_start: UIColor      = (UIColor(hexString: "#D2B592"))!
-    static let gradient_vip_end: UIColor      = (UIColor(hexString: "#F2DFCE"))!
 }
 /// 统一结果态：用它来做日志和灰度
 public enum JobsOpenResult {
