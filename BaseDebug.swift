@@ -8,7 +8,7 @@ import Foundation
 import UIKit
 // MARK: - 私有：蓝色占位图（1x1）
 // 统一的纯色占位（1×1）；需要更大就改 size
-func jobsSolidBlue(
+public func jobsSolidBlue(
     color: UIColor = .systemBlue,
     size: CGSize = .init(width: 1, height: 1),
     scale: CGFloat = 0
