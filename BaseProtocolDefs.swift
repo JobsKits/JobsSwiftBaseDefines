@@ -73,9 +73,16 @@ public extension JobsAsyncable {
     }
 }
 // MARK: - 统一的「任意配置」协议
-public protocol JobsConfigCellProtocol: AnyObject {
-    /// any 可以是任意类型（struct / enum / tuple / dict），
-    /// 在具体 cell 里自己去解包。
+@MainActor
+public protocol CellDataProtocol: AnyObject {
     @discardableResult
-    func byConfigure(_ any: Any?) -> Self
+    func byData(_ any: Any?) -> Self
+}
+
+public extension CellDataProtocol {
+    /// ✅ 不定参糖：1 个参数降级成单参；多个参数传 [Any?]
+    @discardableResult
+    func byData(_ items: Any?...) -> Self {
+        items.count == 1 ? byData(items[0]) : byData(items)
+    }
 }
