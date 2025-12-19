@@ -19,11 +19,6 @@ public protocol ViewControllerFindable {}
 public protocol _UISafeUnwrappedBan {}     // 标记“UI 禁用默认兜底”
 // MARK: - 安全解包 Optional
 public protocol SafeUnwrappedInitializable { init() }
-// MARK: - 强类型输入协议（可选实现）
-public protocol JobsDataReceivable {
-    associatedtype InputData
-    func receive(_ data: InputData)
-}
 // MARK: - 路由目的地等价（避免重名-前缀化）
 /// 默认“同类型 = 同目的地”。需要区分同类不同参数时，在目标 VC 里 override `jobs_isSameDestination(as:)`
 public protocol JobsRouteComparable {
@@ -72,17 +67,48 @@ public extension JobsAsyncable {
         }
     }
 }
-// MARK: - 统一的「任意配置」协议
+/// MARK: - 统一的「任意配置」协议（覆盖 UIView / UIViewController）
+///  正向：byData（单参 + 不定参）
+///  逆向：onResult + sendResult（单参 + 不定参）
 @MainActor
-public protocol CellDataProtocol: AnyObject {
+public protocol ViewDataProtocol: AnyObject {
+    /// 正向@单（入）参数
     @discardableResult
     func byData(_ any: Any?) -> Self
+    /// 逆向@单（入）参数
+    func sendResult(_ any: Any?)
+    /// 逆向@单（出）参数
+    @discardableResult
+    func onResult(_ callback: @escaping (Any?) -> Void) -> Self
 }
 
-public extension CellDataProtocol {
-    /// ✅ 不定参糖：1 个参数降级成单参；多个参数传 [Any?]
+public extension ViewDataProtocol {
+    /// 正向@不定（入）参数
+    @_disfavoredOverload
     @discardableResult
     func byData(_ items: Any?...) -> Self {
         items.count == 1 ? byData(items[0]) : byData(items)
+    }
+    /// 逆向@不定（入）参数
+    @_disfavoredOverload
+    func sendResult(_ items: Any?...) {
+        if items.count == 1 { sendResult(items[0]) }
+        else { sendResult(items) }
+    }
+    /// 逆向@无（入）参数
+    func sendResult() {
+        sendResult(nil as Any?)
+    }
+    /// 逆向@不定（出）参数
+    @_disfavoredOverload
+    @discardableResult
+    func onResult(_ callback: @escaping ([Any?]) -> Void) -> Self {
+        onResult { payload in
+            if let arr = payload as? [Any?] {
+                callback(arr)
+            } else {
+                callback([payload])
+            }
+        }
     }
 }
