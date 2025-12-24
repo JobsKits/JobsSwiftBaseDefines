@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = 'JobsSwiftBaseDefines'          # Pod 名
-  s.version      = '0.1.5'
+  s.version      = '0.1.6'
   s.summary      = '一些全局的基础定义'
   s.description  = <<-DESC
                       全局常量/协议定义/结构体/枚举
